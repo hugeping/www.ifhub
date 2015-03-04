@@ -262,10 +262,15 @@ class PluginEngines_ActionEngines extends ActionPlugin
         /**
          * Теперь можно смело добавлять топик к блогу
          */
-        $oTopic->setBlogId($oBlog->getId());
+/*        $oTopic->setBlogId($oBlog->getId());
         $oTopic->setText($this->Text_Parser($oTopic->getTextSource()));
         $oTopic->setTextShort($oTopic->getText());
-        $oTopic->setCutText(null);
+        $oTopic->setCutText(null);*/
+
+        list($sTextShort,$sTextNew,$sTextCut) = $this->Text_Cut($oTopic->getTextSource());
+        $oTopic->setCutText($sTextCut);
+        $oTopic->setText($this->Text_Parser($sTextNew));
+        $oTopic->setTextShort($this->Text_Parser($sTextShort));
 
         /**
          * Публикуем или сохраняем
@@ -390,9 +395,15 @@ class PluginEngines_ActionEngines extends ActionPlugin
         /**
          * Теперь можно смело редактировать топик
          */
-        $oTopic->setBlogId($oBlog->getId());
+/*        $oTopic->setBlogId($oBlog->getId());
         $oTopic->setText($this->Text_Parser($oTopic->getTextSource()));
-        $oTopic->setTextShort($oTopic->getText());
+        $oTopic->setTextShort($oTopic->getText());*/
+
+        list($sTextShort,$sTextNew,$sTextCut) = $this->Text_Cut($oTopic->getTextSource());
+        $oTopic->setCutText($sTextCut);
+        $oTopic->setText($this->Text_Parser($sTextNew));
+        $oTopic->setTextShort($this->Text_Parser($sTextShort));
+
         /**
          * Публикуем или сохраняем в черновиках
          */
