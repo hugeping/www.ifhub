@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/indexer --config /var/www/ifhub.ru/sphinx.conf "$@"

@@ -718,6 +718,8 @@ return array(
 	'panel_s' => 'зачеркнутый',
 	'panel_url' => 'вставить ссылку',
 	'panel_url_promt' => 'Введите ссылку',
+	'panel_spoiler' => 'спойлер',
+	'panel_spoiler_promt' => 'Введите название спойлера',
 	'panel_image_promt' => 'Введите ссылку на изображение',
 	'panel_code' => 'код',
 	'panel_video' => 'видео',

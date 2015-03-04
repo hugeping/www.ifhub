@@ -1,0 +1,1 @@
+<a href="{router page='login'}openid/" title="{$aLang.plugin.openid.enter_title_alter}" ><img src="{$aTemplateWebPathPlugin.openid}img/openid.png" alt="{$aLang.plugin.openid.openid}" style="margin-bottom: 10px;"/></a><br>

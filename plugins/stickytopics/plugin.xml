@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<name>
+		<lang name="default">StickyTopics v2</lang>
+	</name>
+	<author>
+		<lang name="default">Alexei Lukin aka Kerby</lang>
+	</author>
+	<homepage>http://kerbystudio.ru</homepage>
+	<version>2.0.1</version>
+	<requires>
+		<livestreet>1.0.1</livestreet>
+		<plugins>
+		</plugins>
+	</requires>
+	<description>
+		<lang name="default">Allows to "stick" topics in topics feed</lang>
+		<lang name="russian">Позволяет "закреплять" топики в лентах</lang>
+	</description>
+</plugin>

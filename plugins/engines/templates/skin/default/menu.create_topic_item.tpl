@@ -1,0 +1,1 @@
+<li {if $sMenuSubItemSelect=='engines'}class="active"{/if}><a href="{router page='engines'}add/">{$aLang.plugin.engines.topic_menu_add_engines}</a></li>

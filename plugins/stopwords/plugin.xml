@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+  <name>
+    <lang name="default">Stop words</lang>
+  </name>
+  <author>
+    <lang name="default">PSNet</lang>
+  </author>
+  <homepage>http://psnet.lookformp3.net</homepage>
+  <version>1.1.0</version>
+  <requires>
+    <livestreet>1.0</livestreet>
+    <plugins></plugins>
+  </requires>
+  <description>
+    <lang name="default">Changes words in stop list to another text.</lang>
+    <lang name="russian">Заменяет запрещенные слова в топиках и комментах при публикации на другую фразу.</lang>
+  </description>
+</plugin>

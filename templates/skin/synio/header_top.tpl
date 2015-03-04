@@ -1,7 +1,7 @@
 <header id="header" role="banner">
 	{hook run='header_banner_begin'}
-	<h1 class="site-name"><a href="{cfg name='path.root.web'}">{cfg name='view.name'}</a></h1>
-	
+<!--	<h1 class="site-name"><a href="{cfg name='path.root.web'}">{cfg name='view.name'}</a></h1> -->
+	<h1 class="site-name"><a href="{cfg name='path.root.web'}"><span style2="color:#B22222" style="background-color:#CD1713;color:white;padding-left:3px;padding-right:3px;">if</span>Hub<span style="color:#8F8F8F;">.ru</span></a></h1>
 	
 	<ul class="nav nav-main" id="nav-main">
 		<li {if $sMenuHeadItemSelect=='blog'}class="active"{/if}><a href="{cfg name='path.root.web'}">{$aLang.topic_title}</a> <i></i></li>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <name>
+        <lang name="default">Retroavatar</lang>
+        <lang name="russian">Retroavatar</lang>
+    </name>
+    <author>
+        <lang name="default">Chiliec</lang>
+        <lang name="russian">Chiliec</lang>
+    </author>
+    <homepage>http://livestreetcms.info</homepage>
+    <version>1.0.3</version>
+    <requires>
+        <livestreet>0.5.1</livestreet>
+        <plugins>
+        </plugins>
+    </requires>
+    <description>
+        <lang name="default">If user haven't avatar - displayed RetroAvatar</lang>
+        <lang name="russian">Если у пользователя нет аватара - отображается RetroAvatar</lang>
+    </description>
+</plugin>

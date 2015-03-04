@@ -1,0 +1,12 @@
+input[type="text"].datepicker {
+	display:inline;
+	width:100px;
+	margin-bottom:0px;
+}
+.table-container {
+	clear:both;
+}
+
+.table-container td {
+	vertical-align:middle;
+}

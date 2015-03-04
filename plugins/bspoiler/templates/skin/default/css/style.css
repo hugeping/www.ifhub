@@ -1,0 +1,10 @@
+/**
+ * Spoiler :: CSS
+ * Modified by fedorov mich © 2014
+ * [ LS :: 1.0.3 | Habra Style ]
+ */
+.spoiler-title { color: #6da3bd; border-bottom: 1px dashed; font-weight: normal; cursor: pointer; }
+.spoiler-title:hover { color: #4d7285; }
+.spoiler-body { display: none; padding: 10px; border: 1px solid #eee; background: #f9f9f9; margin-top: 10px; overflow: hidden; }
+.spoiler-title:before { float: left; content: " "; width: 16px; height: 16px; margin-top: 2px; display: block; border: 0px solid red; background: url(../images/spoiler.icon.png) no-repeat left top; }
+.spoiler-title.open:before { background: url(../images/spoiler.icon.png) no-repeat left bottom; }

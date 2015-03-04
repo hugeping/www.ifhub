@@ -404,7 +404,7 @@ $config['router']['page']['admin']         = 'ActionAdmin';
 $config['router']['page']['ajax']          = 'ActionAjax';
 $config['router']['page']['feed']          = 'ActionUserfeed';
 $config['router']['page']['stream']        = 'ActionStream';
-$config['router']['page']['photoset']      = 'ActionPhotoset';
+//$config['router']['page']['photoset']      = 'ActionPhotoset';
 $config['router']['page']['subscribe']     = 'ActionSubscribe';
 // Глобальные настройки роутинга
 $config['router']['config']['action_default']   = 'index';

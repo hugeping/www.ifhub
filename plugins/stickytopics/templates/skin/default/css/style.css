@@ -1,0 +1,15 @@
+.table.table-stickytopics-list th.actions
+{
+	width:70px;
+}
+
+.table.table-stickytopics-list td
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+form.stickytopics p
+{
+	margin-bottom: 0px;
+}

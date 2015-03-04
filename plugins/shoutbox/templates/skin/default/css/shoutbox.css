@@ -1,0 +1,214 @@
+/* bootstrap buttons. */
+.hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
+.input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+#shoutbox_module .btn{display:inline-block;*display:inline;*zoom:1;padding:4px 14px;margin-bottom:0;font-size:14px;line-height:20px;*line-height:20px;text-align:center;vertical-align:middle;cursor:pointer;color:#333333;text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);background-color:#f5f5f5;background-image:-moz-linear-gradient(top, #ffffff, #e6e6e6);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));background-image:-webkit-linear-gradient(top, #ffffff, #e6e6e6);background-image:-o-linear-gradient(top, #ffffff, #e6e6e6);background-image:linear-gradient(to bottom, #ffffff, #e6e6e6);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);border-color:#e6e6e6 #e6e6e6 #bfbfbf;border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);*background-color:#e6e6e6;filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);border:1px solid #bbbbbb;*border:0;border-bottom-color:#a2a2a2;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;*margin-left:.3em;-webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);-moz-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);}#shoutbox_module .btn:hover,#shoutbox_module .btn:active,#shoutbox_module .btn.active,#shoutbox_module .btn.disabled,#shoutbox_module .btn[disabled]{color:#333333;background-color:#e6e6e6;*background-color:#d9d9d9;}
+#shoutbox_module .btn:active,#shoutbox_module .btn.active{background-color:#cccccc \9;}
+#shoutbox_module .btn:first-child{*margin-left:0;}
+#shoutbox_module .btn:hover{color:#333333;text-decoration:none;background-color:#e6e6e6;*background-color:#d9d9d9;background-position:0 -15px;-webkit-transition:background-position 0.1s linear;-moz-transition:background-position 0.1s linear;-o-transition:background-position 0.1s linear;transition:background-position 0.1s linear;}
+#shoutbox_module .btn:focus{outline:thin dotted #333;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
+#shoutbox_module .btn.active,#shoutbox_module .btn:active{background-color:#e6e6e6;background-color:#d9d9d9 \9;background-image:none;outline:0;-webkit-box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);-moz-box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);}
+#shoutbox_module .btn.disabled,#shoutbox_module .btn[disabled]{cursor:default;background-color:#e6e6e6;background-image:none;opacity:0.65;filter:alpha(opacity=65);-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;}
+#shoutbox_module .btn-mini{padding:2px 6px;font-size:11px;line-height:17px;}
+input[type="submit"]#shoutbox_module .btn-block,input[type="reset"]#shoutbox_module .btn-block,input[type="button"]#shoutbox_module .btn-block{width:100%;}
+#shoutbox_module .btn-primary.active,#shoutbox_module .btn-warning.active,#shoutbox_module .btn-danger.active,#shoutbox_module .btn-success.active,#shoutbox_module .btn-info.active,#shoutbox_module .btn-inverse.active{color:rgba(255, 255, 255, 0.75);}
+#shoutbox_module .btn{border-color:#c5c5c5;border-color:rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);}
+#shoutbox_module .btn-success{color:#ffffff;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);background-color:#5bb75b;background-image:-moz-linear-gradient(top, #62c462, #51a351);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));background-image:-webkit-linear-gradient(top, #62c462, #51a351);background-image:-o-linear-gradient(top, #62c462, #51a351);background-image:linear-gradient(to bottom, #62c462, #51a351);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);border-color:#51a351 #51a351 #387038;border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);*background-color:#51a351;filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);}#shoutbox_module .btn-success:hover,#shoutbox_module .btn-success:active,#shoutbox_module .btn-success.active,#shoutbox_module .btn-success.disabled,#shoutbox_module .btn-success[disabled]{color:#ffffff;background-color:#51a351;*background-color:#499249;}
+#shoutbox_module .btn-success:active,#shoutbox_module .btn-success.active{background-color:#408140 \9;}
+button#shoutbox_module .btn,input[type="submit"]#shoutbox_module .btn{*padding-top:3px;*padding-bottom:3px;}button#shoutbox_module .btn::-moz-focus-inner,input[type="submit"]#shoutbox_module .btn::-moz-focus-inner{padding:0;border:0;}
+button#shoutbox_module .btn#shoutbox_module .btn-mini,input[type="submit"]#shoutbox_module .btn#shoutbox_module .btn-mini{*padding-top:1px;*padding-bottom:1px;}
+
+/* Tiny Scrollbar */
+#scrollbar1 { width: 100%;}
+#scrollbar1 .viewport { width:95%; overflow: hidden; position: relative; }
+#scrollbar1 .overview { width:100%; list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; }
+#scrollbar1 .scrollbar{ background: transparent url(../images/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 12px; }
+#scrollbar1 .track { background: transparent url(../images/bg-scrollbar-trackend-y.png) no-repeat 0 100%; height: 100%; width:8px; position: relative; padding: 0 1px; }
+#scrollbar1 .thumb { background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -8px; }
+#scrollbar1 .thumb .end { background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat 50% 0; overflow: hidden; height: 5px; width: 25px; }
+#scrollbar1 .disable { display: none; }
+.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
+
+/* from lightblue theme*/
+.sbpost .action-icons	{ opacity: 0; }
+.sbpost:hover .action-icons	{ opacity: 0.5; -webkit-transition: .2s opacity; -moz-transition: .2s opacity; -ms-transition: .2s opacity; -o-transition: .2s opacity; transition: .2s opacity; }
+.sbpost:hover .action-icons:hover { opacity: 1; }
+
+
+/* Shoutbox by Hellcore */
+.sbmodule {
+    background: -moz-linear-gradient(center top , #FDFDFD 0%, #F6F8F9 100%) repeat scroll 0 0 transparent;
+    border-radius: 3px;
+    border: 2px solid #EAEAEA;
+    margin-top: 16px;
+    margin-button: 16px;
+    min-height: 48px;
+    overflow: hidden;
+    padding: 4px;
+    position: relative;
+    font-family: arial;
+    font-size: 12px;
+}
+.sbmodule_block {
+    background: -moz-linear-gradient(center top , #FDFDFD 0%, #F6F8F9 100%) repeat scroll 0 0 transparent;
+    margin-top: 10px;
+    margin-button: 10px;
+    overflow: hidden;
+    padding: none;
+    position: relative;
+    font-family: arial;
+    font-size: 10px;
+
+}
+
+
+#shoutbox_module a {
+	font-weight: normal;
+	text-decoration: none;
+}
+
+#shoutbox_module .ls-user:before {
+	background: url(../images/shoutbox-icons.png) no-repeat -18px -18px;
+	text-decoration: underline;
+}
+
+#shoutbox_module .inputtable {
+    border-button: 2px solid #EAEAEA;
+    clear: both;
+    height: 45px;
+}
+
+.sbmodule_block .block_date {
+    float:right;
+    margin-right:10px;
+    font-size:10px;
+}
+
+
+#shoutbox_module .inline {
+	margin-bottom:10px;
+}
+
+#shoutbox_module .formleft {
+	width:100%;
+	vertical-align: middle;
+	padding:1px;
+}
+#shoutbox_module .formright {
+	vertical-align: middle;
+	padding:1px;
+}
+
+
+#shoutbox_module .chess 							{}
+#shoutbox_module .deleted 							{background-color: #fdd;}
+#shoutbox_module .forme 							{background-color: #ffa;}
+#shoutbox_module .mypost .nickname					{color:brown;}
+#shoutbox_module .mypost .nickname:hover			{color:black;}
+#shoutbox_module .nickname							{color:gray;}
+#shoutbox_module .nickname:hover					{color:black;}
+
+#shoutbox_module .sb_table tr td {
+	vertical-align: top;
+	padding-top:6px;
+}
+
+#shoutbox_module .sb_table .uinfo {
+	font-size: 11px;
+}
+#shoutbox_module .sb_table .uinfo_block {
+	padding:2px;
+	width:32px;
+	border-bottom: 1px dashed lightgray;
+
+}
+
+#shoutbox_module .sb_table .postinfo {
+	width: 75%;
+	overflow: hidden;
+}
+#shoutbox_module .sb_table .postinfo_block {
+	overflow: hidden;
+	padding:2px;
+	font-size: 11px;
+	border-bottom: 1px dashed lightgray;
+}
+
+#shoutbox_module .uinfo_line_block {
+	margin-buttom:4px;
+	
+	color:gray;
+}
+
+#shoutbox_module .sb_table .uinfo img {
+	margin-right:6px;
+}
+
+#shoutbox_module .sb_table .uinfo .date {
+	color:gray;
+}
+
+#shoutbox_module .modmessage {
+	color:darkgreen;font-weight: bold;letter-spacing: 1px; font-variant: small-caps;
+}
+#shoutbox_module .modwarning {
+	color:darkred;font-weight: bold;letter-spacing: 1px; font-variant: small-caps;
+}
+
+#shoutbox_module .date	{
+	padding-left: 15px; font-style: italic; 
+}
+
+#shoutbox_module .delete, #shoutbox_module .restore, #shoutbox_module .quote {
+	width:16px;
+	height:16px;
+	float:right;
+
+}
+#shoutbox_module .helpm	{ 
+	position: relative;
+	left:-5px;
+	margin-left:8px;
+}
+
+#shoutbox_module .icon {
+	width:16px;
+	height:16px;
+}
+
+#shoutbox_module .idate	{ 
+	background: url(../images/shoutbox-icons.png) no-repeat 0px -2px;
+	padding-right: 16px;
+}
+
+#shoutbox_module .idelete	{ 
+	background: url(../images/shoutbox-icons.png) no-repeat -16px -2px;
+	padding-right: 16px;
+}
+
+#shoutbox_module .irestore	{ 
+	background: url(../images/shoutbox-icons.png) no-repeat -32px -2px;
+	padding-right: 16px;
+}
+#shoutbox_module .ihelp	{ 
+	background: url(../images/shoutbox-icons.png) no-repeat 0px -18px;
+	padding-right: 16px;
+}
+
+#shoutbox_module .iquote{ 
+	background: url(../images/shoutbox-icons.png) no-repeat -16px -18px;
+	padding-right: 16px;
+}
+
+#shoutbox_error_area h4 {
+	display: none;
+}
+
+#shoutbox_error_area p {
+	color:darkred;
+	padding:5px;
+	font-style: italic;
+	border-bottom: 1px solid darkred;
+	margin-bottom:4px;
+}
+
+

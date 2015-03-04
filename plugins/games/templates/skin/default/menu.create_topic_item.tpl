@@ -1,0 +1,1 @@
+<li {if $sMenuSubItemSelect=='games'}class="active"{/if}><a href="{router page='games'}add/">{$aLang.plugin.games.topic_menu_add_games}</a></li>

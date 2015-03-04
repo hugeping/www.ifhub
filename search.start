@@ -1,0 +1,2 @@
+#!/bin/sh
+su peter -c /var/www/ifhub.ru/search_start

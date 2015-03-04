@@ -1,0 +1,31 @@
+h1.openid-header { font: normal 20px Arial, Sans-Serif; }
+
+.openid-block { width: 500px; margin: 0 auto; padding-top: 10px; }
+.openid-block.wide { width: 650px; }
+
+.openid-services { padding-top: 20px; }
+.openid-services p { margin-bottom: 5px; }
+.openid-services img.google { position: relative; top: 2px; }
+
+.step-two label { display: block; font: normal 18px Arial, Sans-Serif; }
+.step-two a.openid-mail { text-decoration: none; color: #70aae0; border-bottom: 1px dashed #70aae0; }
+.step-two p { margin-bottom: 10px; }
+
+.step-three span { color: #afafaf; }
+
+.openid-img { position: relative; top: 4px; margin-right: 3px; }
+
+.openid-block ul { overflow: hidden; zoom: 1; margin-bottom: 15px; }
+.openid-block ul li { float: left; margin-right: 5px; }
+.openid-block ul li a { display: block; text-decoration: none; color: #69909b; background: url(../img/openid_nav.png) no-repeat; }
+.openid-block ul li a span { display: block; padding: 7px 15px 8px 0; margin-left: 15px; background: url(../img/openid_nav.png) no-repeat top right; }
+.openid-block ul li.active a { color: #363f42; background: url(../img/openid_nav.png) no-repeat 0 -33px; }
+.openid-block ul li.active a span { background: url(../img/openid_nav.png) no-repeat 100% -33px; }
+
+.openid-text { width: 300px; border: 1px solid #dadada; vertical-align: top; padding: 5px 7px 6px; color: #444; margin: 0; margin-right: 10px; font-size: 18px; background: url(../img/text-bg.png) repeat-x; }
+.openid-login { float: left; background: url(../img/button_login.png) no-repeat; text-decoration: none; text-shadow: 0 1px #9eb2c7; -moz-text-shadow: 0 1px #9eb2c7; -webkit-text-shadow: 0 1px #9eb2c7; }
+.openid-login span { float: left; padding: 8px 22px 10px 0; margin-left: 22px; color: #000; font-size: 18px; font-family: Tahoma, Arial, Sans-Serif; background: url(../img/button_login.png) no-repeat top right; }
+.openid-ok { float: left; background: url(../img/button_ok.png) no-repeat; text-decoration: none; text-shadow: 0 1px #afd29c; -moz-text-shadow: 0 1px #afd29c; -webkit-text-shadow: 0 1px #afd29c; margin-right: 10px; }
+.openid-ok span { float: left; padding: 7px 18px 11px 0; margin-left: 18px; color: #000; font-size: 18px; font-family: Tahoma, Arial, Sans-Serif; background: url(../img/button_ok.png) no-repeat top right; }
+.openid-no { float: left; background: url(../img/button_no.png) no-repeat; text-decoration: none; text-shadow: 0 1px #db989b; -moz-text-shadow: 0 1px #db989b; -webkit-text-shadow: 0 1px #db989b; }
+.openid-no span { float: left; padding: 7px 18px 11px 0; margin-left: 18px; color: #000; font-size: 18px; font-family: Tahoma, Arial, Sans-Serif; background: url(../img/button_no.png) no-repeat top right; }

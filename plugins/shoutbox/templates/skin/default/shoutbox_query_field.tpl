@@ -1,0 +1,1 @@
+<input type="text" id="shouttext" class="input-text btn-small" style="width:100%">

@@ -1,0 +1,2 @@
+12 */3 * * *  /var/www/ifhub.ru/search_index --rotate topicsIndex > /dev/null 2>&1
+*/50 * * * *  /var/www/ifhub.ru/search_index --rotate commentsIndex > /dev/null 2>&1

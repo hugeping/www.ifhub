@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <name>
+        <lang name="default">MultiLogin</lang>
+    </name>
+    <author>
+        <lang name="default">Alexandr Verenik</lang>
+        <lang name="russian">Александр Вереник</lang>
+    </author>
+    <homepage>https://github.com/wasja1982/livestreet_multilogin</homepage>
+    <version>1.0.1</version>
+    <requires>
+        <livestreet>1.0.3</livestreet>
+        <plugins>
+
+        </plugins>
+    </requires>
+    <description>
+        <lang name="default">MultiLogin - login without reset cookie.</lang>
+        <lang name="russian">MultiLogin - авторизация без сброса cookie.</lang>
+    </description>
+</plugin>

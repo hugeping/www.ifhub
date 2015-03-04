@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+    <name>
+        <lang name="default">Engines</lang>
+    </name>
+    <author>
+        <lang name="default">netlanc/service pluginator.ru</lang>
+    </author>
+    <homepage>http://pluginator.ru</homepage>
+    <version>0.1</version>
+    <requires>
+        <livestreet>1.x</livestreet>
+        <plugins>
+        </plugins>
+    </requires>
+    <description>
+        <lang name="default">Engines</lang>
+    </description>
+</plugin>

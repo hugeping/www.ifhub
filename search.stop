@@ -1,0 +1,2 @@
+#!/bin/sh
+kill -KILL  `cat /var/www/ifhub.ru/sphinx/var/log/sphinx/searchd.pid` && rm /var/www/ifhub.ru/sphinx/var/log/sphinx/searchd.pid

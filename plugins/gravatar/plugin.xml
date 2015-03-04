@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<name>
+		<lang name="default">Gravatar</lang>
+	</name>
+	<author>
+		<lang name="default">rafrica.net</lang>
+	</author>
+	<homepage>http://we.rafrica.net/</homepage>
+	<version>1.1.0</version>
+	<requires>
+		<livestreet>0.4.2</livestreet>
+		<plugins>
+
+		</plugins>
+	</requires>
+	<description>
+		<lang name="default">User avatars from Gravatar</lang>
+		<lang name="russian">Аватары пользователя с Gravatar</lang>
+	</description>
+
+</plugin>

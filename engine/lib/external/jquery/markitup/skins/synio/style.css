@@ -7,7 +7,8 @@
 .markItUp  { margin-bottom: 5px; }
 .markItUpContainer { font: 11px Verdana, Arial, Helvetica, sans-serif; }
 .markItUpEditor {
-	font: 12px "Courier New", Courier, monospace;
+/*	font: 12px "Courier New", Courier, monospace; */
+	font: 12px Verdana,"Helvetica Neue",Helvetica,Arial,sans-serif
 	padding: 5px;
 	height: 400px;
 	line-height: 18px;

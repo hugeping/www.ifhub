@@ -6,7 +6,7 @@ return array(
 		'cfgAllowTags' => array(
 			// вызов метода с параметрами
 			array(
-				array('ls','cut','a', 'img', 'i', 'b', 'u', 's', 'video', 'em',  'strong', 'nobr', 'li', 'ol', 'ul', 'sup', 'abbr', 'sub', 'acronym', 'h4', 'h5', 'h6', 'br', 'hr', 'pre', 'code', 'object', 'param', 'embed', 'blockquote', 'iframe','table','th','tr','td'),
+				array('ls','cut','a', 'img', 'i', 'b', 'u', 's', 'video', 'em',  'strong', 'nobr', 'li', 'ol', 'ul', 'sup', 'abbr', 'sub', 'acronym', 'h4', 'h5', 'h6', 'br', 'hr', 'pre', 'code', 'object', 'param', 'embed', 'blockquote', 'iframe','table','th','tr','td', 'spoiler'),
 			),			
 		),
 		// Коротие теги типа
@@ -73,6 +73,10 @@ return array(
 			array(
 				'table',
 				array('border'=>'#int','cellpadding'=>'#int','cellspacing'=>'#int','align'=>array('right', 'left', 'center'),'height'=>'#int','width'=>'#int')
+			),
+			array(
+				'spoiler',
+				array('title'=>'#text')
 			),
 		),
 		// допустимые комбинации значений у параметров
