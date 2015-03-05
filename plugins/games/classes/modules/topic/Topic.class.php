@@ -39,6 +39,71 @@ class PluginGames_ModuleTopic extends PluginGames_Inherit_ModuleTopic {
         }
         return parent::GetCountTopicsByFilter($aFilter);
     }
+    public function GetTopicsGames($iPage,$iPerPage,$sShowType='good',$sPeriod=null) {
+	if (is_numeric($sPeriod)) {
+		// количество последних секунд
+		$sPeriod=date("Y-m-d H:00:00",time()-$sPeriod);
+	}
+	$aFilter=array(
+	'blog_type' => array(
+		'personal',
+		'open',
+		),
+		'topic_publish' => 1,
+		'topic_type' => 'games',
+	);
+	if ($sPeriod) {
+		$aFilter['topic_date_more'] = $sPeriod;
+	}
+	if ($sShowType == 'views') {
+            if (is_numeric($sPeriod)) {
+                // количество последних секунд
+                $sPeriod=date("Y-m-d H:00:00",time()-$sPeriod);
+            }
+            $bViewstat = (class_exists('PluginViewstat') && in_array('viewstat', $this->Plugin_GetActivePlugins()));
+            $aFilter=array(
+                'blog_type' => array('personal', 'open'),
+            	'topic_type' => 'games',
+                'topic_publish' => 1,
+                'viewstat' => $bViewstat,
+            );
+            if ($sPeriod) {
+                $aFilter[($bViewstat && Config::Get('plugin.views.stat_date_filter')) ? 'stat_date_more' : 'topic_date_more'] = $sPeriod;
+            }
+            $aFilter['order']=array('t.topic_count_read desc','t.topic_id desc');
+            return $this->GetTopicsByFilter($aFilter,$iPage,$iPerPage);
+	}
+	switch ($sShowType) {
+	case 'good':
+		$aFilter['topic_rating']=array(
+			'value' => Config::Get('module.blog.personal_good'),
+			'type'  => 'top',
+		);
+		break;
+	case 'bad':
+		$aFilter['topic_rating']=array(
+			'value' => Config::Get('module.blog.personal_good'),
+			'type'  => 'down',
+		);
+		break;
+	case 'new':
+		$aFilter['topic_new']=date("Y-m-d H:00:00",time()-Config::Get('module.topic.new_time'));
+		break;
+	case 'newall':
+		// нет доп фильтра
+		break;
+	case 'discussed':
+		$aFilter['order']=array('t.topic_count_comment desc','t.topic_id desc');
+		break;
+	case 'top':
+		$aFilter['order']=array('t.topic_rating desc','t.topic_id desc');
+		break;
+	default:
+		break;
+	}
+
+	return $this->GetTopicsByFilter($aFilter,$iPage,$iPerPage);
+    }
     public function GetTopicsGamesLast($iCount) {
         $aFilter=array(
             'blog_type' => array(

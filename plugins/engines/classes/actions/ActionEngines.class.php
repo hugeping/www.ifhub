@@ -58,8 +58,22 @@ class PluginEngines_ActionEngines extends ActionPlugin
     protected function RegisterEvent() {
         $this->AddEvent('add','EventAdd');
         $this->AddEvent('edit','EventEdit');
-        $this->AddEvent('engines','EventEnginesList');
-        $this->AddEventPreg('/^(page([1-9]\d{0,5}))?$/i', 'EventEnginesList');
+        $this->AddEvent('engines','EventTopics');
+        $this->AddEventPreg('/^(page([1-9]\d{0,5}))?$/i', 'EventTopics');
+
+	$this->AddEventPreg('/^good$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEvent('good','EventTopics');
+	$this->AddEventPreg('/^bad$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEventPreg('/^new$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEventPreg('/^newall$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEventPreg('/^discussed$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEventPreg('/^top$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+
+        if (Config::Get('plugin.views.use_sort')) {
+            $this->AddEventPreg('/^views$/i','/^(page([1-9]\d{0,5}))?$/i',array('EventTopics','topics'));
+//            $this->AddEventPreg('/^[\w\-\_]+$/i','/^views$/i','/^(page([1-9]\d{0,5}))?$/i',array('EventShowBlog','blog'));
+        }
+
     }
 
 
@@ -67,50 +81,71 @@ class PluginEngines_ActionEngines extends ActionPlugin
      ************************ РЕАЛИЗАЦИЯ ЭКШЕНА ***************************************
      **********************************************************************************
      */
-    protected function EventEnginesList()
+    protected function EventTopics()
     {
-        /**
-        * Меню
-        */
         $this->sMenuSubItemSelect = 'newall';
         $this->sMenuItemSelect='engines';
-        /**
-        * Передан ли номер страницы
-        */
-        $iPage = $this->GetEventMatch(2) ? $this->GetEventMatch(2) : 1;
-        /**
-        * Устанавливаем основной URL для поисковиков
-        */
-        if ($iPage == 1) {
-            $this->Viewer_SetHtmlCanonical(Config::Get('path.root.web') . '/');
-        }
-        $aFilter = array(
-            'topic_publish' => 1,
-            'topic_type' => array('engines')
-        );
+        
+	$sPeriod='all'; // по дефолту 1 день
+	if (in_array(getRequestStr('period'),array(1,7,30,'all'))) {
+		$sPeriod=getRequestStr('period');
+	}
+	$sShowType=$this->sCurrentEvent;
+	if (!in_array($sShowType,array('discussed','top', 'views'))) {
+		$sPeriod='all';
+	}
+	/**
+	 * Меню
+	 */
+	if ($sShowType == 'engines') {
+		$sShowType = 'good';
+	}
 
+	$this->sMenuSubItemSelect=$sShowType=='newall' ? 'new' : $sShowType;
+	/**
+	 * Передан ли номер страницы
+	 */
+	$iPage=$this->GetParamEventMatch(0,2) ? $this->GetParamEventMatch(0,2) : 1;
+	if ($iPage==1 and !getRequest('period')) {
+		$this->Viewer_SetHtmlCanonical(Router::GetPath('engines').$sShowType.'/');
+	}
         /**
         * Получаем список топиков
         */
-        $aResult = $this->Topic_GetTopicsByFilter($aFilter, $iPage, Config::Get('module.topic.per_page'));
-        $aTopics = $aResult['collection'];
-        /**
-        * Вызов хуков
-        */
-        $this->Hook_Run('topics_list_show', array('aTopics' => $aTopics));
-        /**
-        * Формируем постраничность
-        */
-        $aPaging = $this->Viewer_MakePaging($aResult['count'], $iPage, Config::Get('module.topic.per_page'), Config::Get('pagination.pages.count'), Router::GetPath('engines'));
-        /**
-        * Загружаем переменные в шаблон
-        */
-        $this->Viewer_Assign('aTopics', $aTopics);
-        $this->Viewer_Assign('aPaging', $aPaging);
-        /**
-        * Устанавливаем шаблон вывода
-        */
-        $this->SetTemplateAction('index');
+        $aResult = $this->Topic_GetTopicsEngines($iPage, Config::Get('module.topic.per_page'), $sShowType, $sPeriod=='all' ? null : $sPeriod*60*60*24);
+//        $aResult = $this->Topic_GetTopicsEngines($iPage, 2, $sShowType, $sPeriod=='all' ? null : $sPeriod*60*60*24);
+	/**
+	 * Если нет топиков за 1 день, то показываем за неделю (7)
+	 */
+	if (in_array($sShowType,array('discussed','top', 'views')) and !$aResult['count'] and $iPage==1 and !getRequest('period')) {
+		$sPeriod=7;
+		$aResult=$this->Topic_GetTopicsEngines($iPage,Config::Get('module.topic.per_page'),$sShowType,$sPeriod=='all' ? null : $sPeriod*60*60*24);
+	}
+	$aTopics=$aResult['collection'];
+
+	/**
+	 * Вызов хуков
+	 */
+	$this->Hook_Run('topics_list_show',array('aTopics'=>$aTopics));
+	/**
+	 * Формируем постраничность
+	 */
+	$aPaging=$this->Viewer_MakePaging($aResult['count'],$iPage,Config::Get('module.topic.per_page'),Config::Get('pagination.pages.count'),Router::GetPath('engines').$sShowType,in_array($sShowType,array('discussed','top', 'views')) ? array('period'=>$sPeriod) : array());
+//	$aPaging=$this->Viewer_MakePaging($aResult['count'],$iPage,2,Config::Get('pagination.pages.count'),Router::GetPath('engines').$sShowType,in_array($sShowType,array('discussed','top')) ? array('period'=>$sPeriod) : array());
+	/**
+	 * Загружаем переменные в шаблон
+	 */
+	$this->Viewer_Assign('aTopics',$aTopics);
+	$this->Viewer_Assign('aPaging',$aPaging);
+	if (in_array($sShowType,array('discussed','top', 'views'))) {
+		$this->Viewer_Assign('sPeriodSelectCurrent',$sPeriod);
+		$this->Viewer_Assign('sPeriodSelectRoot',Router::GetPath('engines').$sShowType.'/');
+	}
+	/**
+	 * Устанавливаем шаблон вывода
+	 */
+	$this->SetTemplateAction('index');
+//	error_log($this->sPeriodSelectCurrent);
     }
     /**
      * Редактирование топика
@@ -172,7 +207,6 @@ class PluginEngines_ActionEngines extends ActionPlugin
             $_REQUEST['topic_publish_index']=$oTopic->getPublishIndex();
             $_REQUEST['topic_forbid_comment']=$oTopic->getForbidComment();
                 $_REQUEST['topic_field_link1']=$oTopic->getFieldLink1();
-                    $_REQUEST['topic_field_string1']=$oTopic->getFieldString1();
             }
     }
     /**
@@ -262,7 +296,8 @@ class PluginEngines_ActionEngines extends ActionPlugin
         /**
          * Теперь можно смело добавлять топик к блогу
          */
-/*        $oTopic->setBlogId($oBlog->getId());
+
+/*      $oTopic->setBlogId($oBlog->getId());
         $oTopic->setText($this->Text_Parser($oTopic->getTextSource()));
         $oTopic->setTextShort($oTopic->getText());
         $oTopic->setCutText(null);*/
@@ -271,6 +306,7 @@ class PluginEngines_ActionEngines extends ActionPlugin
         $oTopic->setCutText($sTextCut);
         $oTopic->setText($this->Text_Parser($sTextNew));
         $oTopic->setTextShort($this->Text_Parser($sTextShort));
+
 
         /**
          * Публикуем или сохраняем
@@ -299,7 +335,6 @@ class PluginEngines_ActionEngines extends ActionPlugin
             $oTopic->setForbidComment(1);
         }
                                         $oTopic->setFieldLink1(getRequest('topic_field_link1'));
-                                                        $oTopic->setFieldString1(getRequest('topic_field_string1'));
                             /**
          * Запускаем выполнение хуков
          */
@@ -436,7 +471,6 @@ class PluginEngines_ActionEngines extends ActionPlugin
             $oTopic->setForbidComment(1);
         }
                     $oTopic->setFieldLink1(getRequest('topic_field_link1'));
-                        $oTopic->setFieldString1(getRequest('topic_field_string1'));
                 $this->Hook_Run('topic_edit_before', array('oTopic'=>$oTopic,'oBlog'=>$oBlog));
         /**
          * Сохраняем топик
@@ -491,10 +525,6 @@ class PluginEngines_ActionEngines extends ActionPlugin
             $this->Message_AddError($oTopic->_getValidateError(),$this->Lang_Get('error'));
             $bOk=false;
         }
-
-
-
-
 
 
 

@@ -29,14 +29,20 @@ Config::Set('block.rule_games', array(
     ),
     'clear' => false,
 ));
+
 Config::Set('block.rule_games_page', array(
     'action' => array(
-        'games' => array('games'),
+        'games' => array('games', 'views', 'discussed', 'top', 'newall', '/^(page([1-9]\d{0,5}))?$/i' ),
     ),
     'blocks' => array(
         'right' => array('stream'=>array('priority'=>100),'tags'=>array('priority'=>50),'blogs'=>array('params'=>array(),'priority'=>1))
     ),
     'clear' => false,
 ));
+
+$aTypes = Config::Get('block.rule_topic_type');
+$aTypes['action']['games'] = array('add','edit');
+Config::Set('block.rule_topic_type', $aTypes);
+
 Config::Set('router.page.games', 'PluginGames_ActionGames');return $config;
 ?>

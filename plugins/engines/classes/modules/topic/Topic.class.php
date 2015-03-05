@@ -19,13 +19,13 @@ class PluginEngines_ModuleTopic extends PluginEngines_Inherit_ModuleTopic {
 
     public function Init() {
         parent::Init();
-        array_push($this->aTopicTypes, 'engines');
         array_push($this->aTopicTypes, 'games');
+        array_push($this->aTopicTypes, 'engines');
     }
     public function GetTopicsByFilter($aFilter,$iPage=1,$iPerPage=10,$aAllowData=null) {
         if (array_key_exists('topic_publish', $aFilter) && $aFilter['topic_publish']!=0){
             if (empty($aFilter['topic_type'])){
-                $aFilter['topic_type'] = array('engines', 'games', 'topic','link','question','photoset');
+                $aFilter['topic_type'] = array('games', 'engines', 'topic','link','question','photoset');
             }
         }
         return parent::GetTopicsByFilter($aFilter,$iPage,$iPerPage,$aAllowData);
@@ -34,12 +34,76 @@ class PluginEngines_ModuleTopic extends PluginEngines_Inherit_ModuleTopic {
     public function GetCountTopicsByFilter($aFilter) {
         if ($aFilter['topic_publish']!=0){
             if (empty($aFilter['topic_type'])){
-                $aFilter['topic_type'] = array('engines', 'games', 'topic','link','question','photoset');
+                $aFilter['topic_type'] = array('games', 'engines', 'topic','link','question','photoset');
             }
         }
         return parent::GetCountTopicsByFilter($aFilter);
     }
+    public function GetTopicsEngines($iPage,$iPerPage,$sShowType='good',$sPeriod=null) {
+	if (is_numeric($sPeriod)) {
+		// количество последних секунд
+		$sPeriod=date("Y-m-d H:00:00",time()-$sPeriod);
+	}
+	$aFilter=array(
+	'blog_type' => array(
+		'personal',
+		'open',
+		),
+		'topic_publish' => 1,
+		'topic_type' => 'engines',
+	);
+	if ($sPeriod) {
+		$aFilter['topic_date_more'] = $sPeriod;
+	}
+	if ($sShowType == 'views') {
+            if (is_numeric($sPeriod)) {
+                // количество последних секунд
+                $sPeriod=date("Y-m-d H:00:00",time()-$sPeriod);
+            }
+            $bViewstat = (class_exists('PluginViewstat') && in_array('viewstat', $this->Plugin_GetActivePlugins()));
+            $aFilter=array(
+                'blog_type' => array('personal', 'open'),
+            	'topic_type' => 'engines',
+                'topic_publish' => 1,
+                'viewstat' => $bViewstat,
+            );
+            if ($sPeriod) {
+                $aFilter[($bViewstat && Config::Get('plugin.views.stat_date_filter')) ? 'stat_date_more' : 'topic_date_more'] = $sPeriod;
+            }
+            $aFilter['order']=array('t.topic_count_read desc','t.topic_id desc');
+            return $this->GetTopicsByFilter($aFilter,$iPage,$iPerPage);
+	}
+	switch ($sShowType) {
+	case 'good':
+		$aFilter['topic_rating']=array(
+			'value' => Config::Get('module.blog.personal_good'),
+			'type'  => 'top',
+		);
+		break;
+	case 'bad':
+		$aFilter['topic_rating']=array(
+			'value' => Config::Get('module.blog.personal_good'),
+			'type'  => 'down',
+		);
+		break;
+	case 'new':
+		$aFilter['topic_new']=date("Y-m-d H:00:00",time()-Config::Get('module.topic.new_time'));
+		break;
+	case 'newall':
+		// нет доп фильтра
+		break;
+	case 'discussed':
+		$aFilter['order']=array('t.topic_count_comment desc','t.topic_id desc');
+		break;
+	case 'top':
+		$aFilter['order']=array('t.topic_rating desc','t.topic_id desc');
+		break;
+	default:
+		break;
+	}
 
+	return $this->GetTopicsByFilter($aFilter,$iPage,$iPerPage);
+    }
     public function GetTopicsEnginesLast($iCount) {
         $aFilter=array(
             'blog_type' => array(
@@ -63,7 +127,6 @@ class PluginEngines_ModuleTopic extends PluginEngines_Inherit_ModuleTopic {
         }
         return false;
     }
-
     public function UpdateTopicFieldsEngines(ModuleTopic_EntityTopic $oTopic) {
         $oTopic->setDateEdit(date("Y-m-d H:i:s"), time()+1);
         if ($this->oMapperTopic->UpdateTopicFieldsEngines($oTopic)) {

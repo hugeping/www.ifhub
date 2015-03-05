@@ -21,6 +21,32 @@
 	</ul>
 {/if}
 
+{if $sMenuItemSelect=='games'}
+	<ul class="nav-foldable">
+		<li {if $sMenuSubItemSelect=='good'}class="active"{/if}><a href="{cfg name='path.root.web'}/games/">{$aLang.blog_menu_collective_good}</a></li>
+		<li {if $sMenuSubItemSelect=='new'}class="active"{/if}>
+			<a href="{cfg name='path.root.web'}/games/newall/" title="{$aLang.blog_menu_top_period_all}">{$aLang.blog_menu_collective_new}</a>
+			{if $iCountTopicsBlogNew>0} <a href="{cfg name='path.root.web'}/games/new/" class="new" title="{$aLang.blog_menu_top_period_24h}">+{$iCountTopicsBlogNew}</a>{/if}
+		</li>
+		<li {if $sMenuSubItemSelect=='discussed'}class="active"{/if}><a href="{cfg name='path.root.web'}/games/discussed/">{$aLang.blog_menu_collective_discussed}</a></li>
+		<li {if $sMenuSubItemSelect=='top'}class="active"{/if}><a href="{cfg name='path.root.web'}/games/top/">{$aLang.blog_menu_collective_top}</a></li>
+		<li {if $sMenuSubItemSelect=='views'}class="active"{/if}><a href="{cfg name='path.root.web'}/games/views/">{$aLang.plugin.views.views}</a></li>
+	</ul>
+{/if}
+
+{if $sMenuItemSelect=='engines'}
+	<ul class="nav-foldable">
+		<li {if $sMenuSubItemSelect=='good'}class="active"{/if}><a href="{cfg name='path.root.web'}/engines/">{$aLang.blog_menu_collective_good}</a></li>
+		<li {if $sMenuSubItemSelect=='new'}class="active"{/if}>
+			<a href="{cfg name='path.root.web'}/engines/newall/" title="{$aLang.blog_menu_top_period_all}">{$aLang.blog_menu_collective_new}</a>
+			{if $iCountTopicsBlogNew>0} <a href="{cfg name='path.root.web'}/engines/new/" class="new" title="{$aLang.blog_menu_top_period_24h}">+{$iCountTopicsBlogNew}</a>{/if}
+		</li>
+		<li {if $sMenuSubItemSelect=='discussed'}class="active"{/if}><a href="{cfg name='path.root.web'}/engines/discussed/">{$aLang.blog_menu_collective_discussed}</a></li>
+		<li {if $sMenuSubItemSelect=='top'}class="active"{/if}><a href="{cfg name='path.root.web'}/engines/top/">{$aLang.blog_menu_collective_top}</a></li>
+		<li {if $sMenuSubItemSelect=='views'}class="active"{/if}><a href="{cfg name='path.root.web'}/engines/views/">{$aLang.plugin.views.views}</a></li>
+	</ul>
+{/if}
+
 {if $sPeriodSelectCurrent}
 	<ul class="nav-foldable">
 		<li {if $sPeriodSelectCurrent=='1'}class="active"{/if}><a href="{$sPeriodSelectRoot}?period=1">{$aLang.blog_menu_top_period_24h}</a></li>

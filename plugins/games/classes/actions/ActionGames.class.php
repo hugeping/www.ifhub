@@ -58,8 +58,22 @@ class PluginGames_ActionGames extends ActionPlugin
     protected function RegisterEvent() {
         $this->AddEvent('add','EventAdd');
         $this->AddEvent('edit','EventEdit');
-        $this->AddEvent('games','EventGamesList');
-        $this->AddEventPreg('/^(page([1-9]\d{0,5}))?$/i', 'EventGamesList');
+        $this->AddEvent('games','EventTopics');
+        $this->AddEventPreg('/^(page([1-9]\d{0,5}))?$/i', 'EventTopics');
+
+	$this->AddEventPreg('/^good$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEvent('good','EventTopics');
+	$this->AddEventPreg('/^bad$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEventPreg('/^new$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEventPreg('/^newall$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEventPreg('/^discussed$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+	$this->AddEventPreg('/^top$/i','/^(page([1-9]\d{0,5}))?$/i','EventTopics');
+
+        if (Config::Get('plugin.views.use_sort')) {
+            $this->AddEventPreg('/^views$/i','/^(page([1-9]\d{0,5}))?$/i',array('EventTopics','topics'));
+//            $this->AddEventPreg('/^[\w\-\_]+$/i','/^views$/i','/^(page([1-9]\d{0,5}))?$/i',array('EventShowBlog','blog'));
+        }
+
     }
 
 
@@ -67,50 +81,71 @@ class PluginGames_ActionGames extends ActionPlugin
      ************************ РЕАЛИЗАЦИЯ ЭКШЕНА ***************************************
      **********************************************************************************
      */
-    protected function EventGamesList()
+    protected function EventTopics()
     {
-        /**
-        * Меню
-        */
         $this->sMenuSubItemSelect = 'newall';
         $this->sMenuItemSelect='games';
-        /**
-        * Передан ли номер страницы
-        */
-        $iPage = $this->GetEventMatch(2) ? $this->GetEventMatch(2) : 1;
-        /**
-        * Устанавливаем основной URL для поисковиков
-        */
-        if ($iPage == 1) {
-            $this->Viewer_SetHtmlCanonical(Config::Get('path.root.web') . '/');
-        }
-        $aFilter = array(
-            'topic_publish' => 1,
-            'topic_type' => array('games')
-        );
+        
+	$sPeriod='all'; // по дефолту 1 день
+	if (in_array(getRequestStr('period'),array(1,7,30,'all'))) {
+		$sPeriod=getRequestStr('period');
+	}
+	$sShowType=$this->sCurrentEvent;
+	if (!in_array($sShowType,array('discussed','top', 'views'))) {
+		$sPeriod='all';
+	}
+	/**
+	 * Меню
+	 */
+	if ($sShowType == 'games') {
+		$sShowType = 'good';
+	}
 
+	$this->sMenuSubItemSelect=$sShowType=='newall' ? 'new' : $sShowType;
+	/**
+	 * Передан ли номер страницы
+	 */
+	$iPage=$this->GetParamEventMatch(0,2) ? $this->GetParamEventMatch(0,2) : 1;
+	if ($iPage==1 and !getRequest('period')) {
+		$this->Viewer_SetHtmlCanonical(Router::GetPath('games').$sShowType.'/');
+	}
         /**
         * Получаем список топиков
         */
-        $aResult = $this->Topic_GetTopicsByFilter($aFilter, $iPage, Config::Get('module.topic.per_page'));
-        $aTopics = $aResult['collection'];
-        /**
-        * Вызов хуков
-        */
-        $this->Hook_Run('topics_list_show', array('aTopics' => $aTopics));
-        /**
-        * Формируем постраничность
-        */
-        $aPaging = $this->Viewer_MakePaging($aResult['count'], $iPage, Config::Get('module.topic.per_page'), Config::Get('pagination.pages.count'), Router::GetPath('games'));
-        /**
-        * Загружаем переменные в шаблон
-        */
-        $this->Viewer_Assign('aTopics', $aTopics);
-        $this->Viewer_Assign('aPaging', $aPaging);
-        /**
-        * Устанавливаем шаблон вывода
-        */
-        $this->SetTemplateAction('index');
+        $aResult = $this->Topic_GetTopicsGames($iPage, Config::Get('module.topic.per_page'), $sShowType, $sPeriod=='all' ? null : $sPeriod*60*60*24);
+//        $aResult = $this->Topic_GetTopicsGames($iPage, 2, $sShowType, $sPeriod=='all' ? null : $sPeriod*60*60*24);
+	/**
+	 * Если нет топиков за 1 день, то показываем за неделю (7)
+	 */
+	if (in_array($sShowType,array('discussed','top', 'views')) and !$aResult['count'] and $iPage==1 and !getRequest('period')) {
+		$sPeriod=7;
+		$aResult=$this->Topic_GetTopicsGames($iPage,Config::Get('module.topic.per_page'),$sShowType,$sPeriod=='all' ? null : $sPeriod*60*60*24);
+	}
+	$aTopics=$aResult['collection'];
+
+	/**
+	 * Вызов хуков
+	 */
+	$this->Hook_Run('topics_list_show',array('aTopics'=>$aTopics));
+	/**
+	 * Формируем постраничность
+	 */
+	$aPaging=$this->Viewer_MakePaging($aResult['count'],$iPage,Config::Get('module.topic.per_page'),Config::Get('pagination.pages.count'),Router::GetPath('games').$sShowType,in_array($sShowType,array('discussed','top', 'views')) ? array('period'=>$sPeriod) : array());
+//	$aPaging=$this->Viewer_MakePaging($aResult['count'],$iPage,2,Config::Get('pagination.pages.count'),Router::GetPath('games').$sShowType,in_array($sShowType,array('discussed','top')) ? array('period'=>$sPeriod) : array());
+	/**
+	 * Загружаем переменные в шаблон
+	 */
+	$this->Viewer_Assign('aTopics',$aTopics);
+	$this->Viewer_Assign('aPaging',$aPaging);
+	if (in_array($sShowType,array('discussed','top', 'views'))) {
+		$this->Viewer_Assign('sPeriodSelectCurrent',$sPeriod);
+		$this->Viewer_Assign('sPeriodSelectRoot',Router::GetPath('games').$sShowType.'/');
+	}
+	/**
+	 * Устанавливаем шаблон вывода
+	 */
+	$this->SetTemplateAction('index');
+//	error_log($this->sPeriodSelectCurrent);
     }
     /**
      * Редактирование топика

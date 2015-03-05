@@ -1,3 +1,4 @@
+
 {if $sMenuItemSelect=='index'}
 	<ul class="nav nav-pills mb-30">
 		<li {if $sMenuSubItemSelect=='good'}class="active"{/if}><a href="{cfg name='path.root.web'}/">{$aLang.blog_menu_all_good}</a></li>
@@ -8,6 +9,32 @@
 		<li {if $sMenuSubItemSelect=='discussed'}class="active"{/if}><a href="{router page='index'}discussed/">{$aLang.blog_menu_all_discussed}</a></li>
 		<li {if $sMenuSubItemSelect=='top'}class="active"{/if}><a href="{router page='index'}top/">{$aLang.blog_menu_all_top}</a></li>
 		{hook run='menu_blog_index_item'}
+	</ul>
+{/if}
+
+{if $sMenuItemSelect=='games'}
+	<ul class="nav nav-pills mb-30">
+		<li {if $sMenuSubItemSelect=='good'}class="active"{/if}><a href="{cfg name='path.root.web'}/games/">{$aLang.blog_menu_collective_good}</a></li>
+		<li {if $sMenuSubItemSelect=='new'}class="active"{/if}>
+			<a href="{cfg name='path.root.web'}/games/newall/" title="{$aLang.blog_menu_top_period_all}">{$aLang.blog_menu_collective_new}</a>
+			{if $iCountTopicsBlogNew>0} <a href="{cfg name='path.root.web'}/games/new/" class="new" title="{$aLang.blog_menu_top_period_24h}">+{$iCountTopicsBlogNew}</a>{/if}
+		</li>
+		<li {if $sMenuSubItemSelect=='discussed'}class="active"{/if}><a href="{cfg name='path.root.web'}/games/discussed/">{$aLang.blog_menu_collective_discussed}</a></li>
+		<li {if $sMenuSubItemSelect=='top'}class="active"{/if}><a href="{cfg name='path.root.web'}/games/top/">{$aLang.blog_menu_collective_top}</a></li>
+		<li {if $sMenuSubItemSelect=='views'}class="active"{/if}><a href="{cfg name='path.root.web'}/games/views/">{$aLang.plugin.views.views}</a></li>
+	</ul>
+{/if}
+
+{if $sMenuItemSelect=='engines'}
+	<ul class="nav nav-pills mb-30">
+		<li {if $sMenuSubItemSelect=='good'}class="active"{/if}><a href="{cfg name='path.root.web'}/engines/">{$aLang.blog_menu_collective_good}</a></li>
+		<li {if $sMenuSubItemSelect=='new'}class="active"{/if}>
+			<a href="{cfg name='path.root.web'}/engines/newall/" title="{$aLang.blog_menu_top_period_all}">{$aLang.blog_menu_collective_new}</a>
+			{if $iCountTopicsBlogNew>0} <a href="{cfg name='path.root.web'}/engines/new/" class="new" title="{$aLang.blog_menu_top_period_24h}">+{$iCountTopicsBlogNew}</a>{/if}
+		</li>
+		<li {if $sMenuSubItemSelect=='discussed'}class="active"{/if}><a href="{cfg name='path.root.web'}/engines/discussed/">{$aLang.blog_menu_collective_discussed}</a></li>
+		<li {if $sMenuSubItemSelect=='top'}class="active"{/if}><a href="{cfg name='path.root.web'}/engines/top/">{$aLang.blog_menu_collective_top}</a></li>
+		<li {if $sMenuSubItemSelect=='views'}class="active"{/if}><a href="{cfg name='path.root.web'}/engines/views/">{$aLang.plugin.views.views}</a></li>
 	</ul>
 {/if}
 
