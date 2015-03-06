@@ -249,7 +249,6 @@ class PluginEngines_ActionEngines extends ActionPlugin
          * Заполняем поля для валидации
          */
         $oTopic->setBlogId(getRequest('blog_id'));
-
         $oTopic->setTitle(strip_tags(getRequest('topic_title')));
 
         $oTopic->setTextSource(getRequest('topic_text'));
@@ -293,6 +292,8 @@ class PluginEngines_ActionEngines extends ActionPlugin
             $this->Message_AddErrorSingle($this->Lang_Get('topic_time_limit'),$this->Lang_Get('error'));
             return;
         }
+	$oTopic->setBlogId($oBlog->getId());
+
         /**
          * Теперь можно смело добавлять топик к блогу
          */
