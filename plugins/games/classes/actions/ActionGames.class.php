@@ -431,6 +431,7 @@ class PluginGames_ActionGames extends ActionPlugin
         /**
          * Теперь можно смело редактировать топик
          */
+         $oTopic->setBlogId($oBlog->getId());
 /*        $oTopic->setBlogId($oBlog->getId());
         $oTopic->setText($this->Text_Parser($oTopic->getTextSource()));
         $oTopic->setTextShort($oTopic->getText());*/

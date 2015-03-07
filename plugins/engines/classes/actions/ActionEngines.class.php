@@ -297,7 +297,7 @@ class PluginEngines_ActionEngines extends ActionPlugin
         /**
          * Теперь можно смело добавлять топик к блогу
          */
-
+        
 /*      $oTopic->setBlogId($oBlog->getId());
         $oTopic->setText($this->Text_Parser($oTopic->getTextSource()));
         $oTopic->setTextShort($oTopic->getText());
@@ -431,6 +431,7 @@ class PluginEngines_ActionEngines extends ActionPlugin
         /**
          * Теперь можно смело редактировать топик
          */
+         $oTopic->setBlogId($oBlog->getId());
 /*        $oTopic->setBlogId($oBlog->getId());
         $oTopic->setText($this->Text_Parser($oTopic->getTextSource()));
         $oTopic->setTextShort($oTopic->getText());*/
