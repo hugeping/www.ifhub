@@ -4,9 +4,9 @@
  * [ LS :: 1.0.3 | Habra Style ]
  */
 $(document).ready(function(){
- $('.spoiler-title').click(function(){
+ $('.spoiler-title').on('click touchstart', function(){
   $(this).toggleClass('open');
   $(this).parent().children('div.spoiler-body').toggle('normal');
-  return false;
+   return false;
  });
 });
