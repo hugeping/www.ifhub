@@ -10,6 +10,14 @@ RewriteRule ^(.*)$ ./index.php
 
 
 # Deny access
+<Files ~ "\.conf$">
+	order allow,deny
+	deny from all
+</Files>
+<Files ~ "\.sh$">
+	order allow,deny
+	deny from all
+</Files>
 <Files "plugins.dat">
 	order allow,deny
 	deny from all
