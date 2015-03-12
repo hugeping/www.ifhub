@@ -19,6 +19,15 @@
 			{if $oTopic->getType() == 'link'} 
 				<i class="icon-topic-link" title="{$aLang.topic_link}"></i>
 			{/if}
+
+			{if $oTopic->getType() == 'games'} 
+				<i class="icon-topic-game" title="{$aLang.plugin.games.topic_menu_add_games}"></i>
+			{/if}
+
+			{if $oTopic->getType() == 'engines'} 
+				<i class="icon-topic-engine" title="{$aLang.plugin.engines.topic_menu_add_engines}"></i>
+			{/if}
+
 		</h1>
 		
 		

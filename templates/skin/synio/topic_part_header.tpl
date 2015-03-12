@@ -19,6 +19,15 @@
 			{if $oTopic->getType() == 'link'} 
 				<i class="icon-synio-topic-link" title="{$aLang.topic_link}"></i>
 			{/if}
+
+			{if $oTopic->getType() == 'games'} 
+				<i class="icon-synio-topic-game" title="{$aLang.plugin.games.topic_menu_add_games}"></i>
+			{/if}
+
+			{if $oTopic->getType() == 'engines'} 
+				<i class="icon-synio-topic-engine" title="{$aLang.plugin.engines.topic_menu_add_engines}"></i>
+			{/if}
+
 		</h1>
 		
 		
