@@ -20,7 +20,7 @@ class PluginGames_BlockGames extends Block
 
     public function Exec()
     {
-        $aGames = $this->Topic_GetTopicsGamesLast(Config::Get('block.stream.row'));
+        $aGames = $this->Topic_GetTopicsGamesLast(Config::Get('block.blogs.row'));
         $this->Viewer_Assign('aGames',$aGames);
     }
 
