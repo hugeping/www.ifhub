@@ -207,6 +207,7 @@ class PluginEngines_ActionEngines extends ActionPlugin
             $_REQUEST['topic_publish_index']=$oTopic->getPublishIndex();
             $_REQUEST['topic_forbid_comment']=$oTopic->getForbidComment();
                 $_REQUEST['topic_field_link1']=$oTopic->getFieldLink1();
+		$_REQUEST['topic_field_string1']=$oTopic->getFieldString1();
             }
     }
     /**
@@ -335,7 +336,8 @@ class PluginEngines_ActionEngines extends ActionPlugin
         if (getRequest('topic_forbid_comment')) {
             $oTopic->setForbidComment(1);
         }
-                                        $oTopic->setFieldLink1(getRequest('topic_field_link1'));
+        $oTopic->setFieldLink1(getRequest('topic_field_link1'));
+	$oTopic->setFieldString1(getRequest('topic_field_string1'));
                             /**
          * Запускаем выполнение хуков
          */
@@ -473,6 +475,7 @@ class PluginEngines_ActionEngines extends ActionPlugin
             $oTopic->setForbidComment(1);
         }
                     $oTopic->setFieldLink1(getRequest('topic_field_link1'));
+		    $oTopic->setFieldString1(getRequest('topic_field_string1'));
                 $this->Hook_Run('topic_edit_before', array('oTopic'=>$oTopic,'oBlog'=>$oBlog));
         /**
          * Сохраняем топик
