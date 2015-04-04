@@ -45,6 +45,7 @@ class ModuleUser_EntityUser extends Entity {
 		array('login','login_exists','on'=>array('registration')),
 		array('mail','email','allowEmpty'=>false,'on'=>array('registration','')),
 		array('mail','mail_exists','on'=>array('registration')),
+		array('mail','antispam','on'=>array('registration')),
 		array('password','string','allowEmpty'=>false,'min'=>5,'on'=>array('registration')),
 		array('password_confirm','compare','compareField'=>'password','on'=>array('registration')),
 	);
@@ -708,6 +709,14 @@ class ModuleUser_EntityUser extends Entity {
 	 */
 	public function setUserFriend($data) {
 		$this->_aData['user_friend']=$data;
+	}
+	public function ValidateAntispam($sValue,$aParams) {
+		$as = str_replace(" ", "", Config::Get('antispam.mail'));
+		$as = str_replace(",", "|", $as);
+		if (preg_match("/".$as."/i", trim($sValue))) {
+			return 'Данный почтовый ящик запрещён';
+		}
+		return true;
 	}
 }
 ?>
