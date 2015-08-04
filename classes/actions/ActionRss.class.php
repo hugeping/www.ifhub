@@ -42,6 +42,7 @@ class ActionRss extends Action {
 	protected function RegisterEvent() {
 		$this->AddEvent('index','RssGood');
 		$this->AddEvent('new','RssNew');
+		$this->AddEvent('newall','RssNewAll');
 		$this->AddEvent('allcomments','RssComments');
 		$this->AddEvent('comments','RssTopicComments');
 		$this->AddEvent('tag','RssTag');
@@ -128,6 +129,48 @@ class ActionRss extends Action {
 		$this->Viewer_Assign('aItems',$topics);
 		$this->SetTemplateAction('index');
 	}
+
+	/**
+	 * Вывод RSS всех новых топиков
+	 */
+	protected function RssNewAll() {
+		/**
+		 * Получаем топики
+		 */
+		$aResult=$this->Topic_GetTopicsNewAll(1,Config::Get('module.topic.per_page')*2,false);
+		$aTopics=$aResult['collection'];
+		/**
+		 * Формируем данные канала RSS
+		 */
+		$aChannel['title']=Config::Get('view.name');
+		$aChannel['link']=Config::Get('path.root.web');
+		$aChannel['description']=Config::Get('path.root.web').' / RSS channel';
+		$aChannel['language']='ru';
+		$aChannel['managingEditor']=Config::Get('general.rss_editor_mail');
+		$aChannel['generator']=Config::Get('path.root.web');
+		/**
+		 * Формируем записи RSS
+		 */
+		$topics = array();
+		foreach ($aTopics as $oTopic){
+			$item['title']=$oTopic->getTitle();
+			$item['guid']=$oTopic->getUrl();
+			$item['link']=$oTopic->getUrl();
+			$item['description']=$this->getTopicTextShort($oTopic);
+			$item['pubDate']=$oTopic->getDateAdd();
+			$item['author']=$oTopic->getUser()->getLogin();
+			$item['category']=htmlspecialchars($oTopic->getTags());
+			$topics[]=$item;
+		}
+		/**
+		 * Формируем ответ
+		 */
+		$this->InitRss();
+		$this->Viewer_Assign('aChannel',$aChannel);
+		$this->Viewer_Assign('aItems',$topics);
+		$this->SetTemplateAction('index');
+	}
+
 	/**
 	 * Вывод RSS последних комментариев
 	 */
@@ -357,6 +400,21 @@ class ActionRss extends Action {
 		$this->Viewer_Assign('aItems',$topics);
 		$this->SetTemplateAction('index');
 	}
+	/**
+	 * Формирует короткий текст топика для RSS
+	 *
+	 */
+	protected function getTopicTextShort($oTopic) {
+		$sText=$oTopic->getTextShort();
+		$stripText=strip_tags($sText);
+		if (strlen($stripText) > 256) {
+			$sText = substr($stripText, 0, strrpos(substr($stripText, 0, 256), " ")).'...';
+		} else {
+			$sText = $stripText;
+		}
+		return $sText;
+	}
+
 	/**
 	 * Формирует текст топика для RSS
 	 *
