@@ -399,6 +399,17 @@ class ModuleACL extends Module {
 	 * @return bool
 	 */
 	public function CanDeleteComment($oUser) {
+/*
+hack
+		if($this->getTarget()) {
+			if($sBlogId = $this->getTarget()->getBlogId()) {
+				$oBlogUser = $this->Blog_GetBlogUserByBlogIdAndUserId($sBlogId, $oUser->getId());
+			}
+			if (isset($oBlogUser) && ($oBlogUser->getIsModerator() || $oBlogUser->getIsAdministrator())) {
+				return true;
+			}
+		}
+*/
 		if (!$oUser || !$oUser->isAdministrator()) {
 			return false;
 		}
