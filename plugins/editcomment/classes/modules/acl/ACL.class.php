@@ -42,6 +42,15 @@ class PluginEditcomment_ModuleACL extends PluginEditcomment_Inherit_ModuleACL
         
         if ($oUser->isAdministrator())
             return true;
+
+	if($oComment->getTarget()) {
+		if ($sBlogId = $oComment->getTarget()->getBlogId()) {
+				$oBlogUser = $oComment->Blog_GetBlogUserByBlogIdAndUserId($sBlogId, $oUser->getId());
+		}
+		if (isset($oBlogUser) && ($oBlogUser->getIsModerator() || $oBlogUser->getIsAdministrator()))
+			return true;
+	}
+
         
         $aUsers=Config::Get('plugin.editcomment.comment_editors');
         if (is_array($aUsers) && in_array($oUser->getId(),$aUsers))
