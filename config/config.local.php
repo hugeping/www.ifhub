@@ -31,7 +31,7 @@ $config['db']['params']['dbname'] = 'ifhub';
 $config['db']['table']['prefix'] = '';
 
 $config['path']['root']['web'] = 'http://ifhub.ru';
-$config['path']['root']['server'] = '/home/peter/www/ifhub.ru';
+$config['path']['root']['server'] = '/var/www/www.ifhub';
 $config['path']['offset_request_url'] = '0';
 $config['db']['tables']['engine'] = 'InnoDB';
 
@@ -52,5 +52,13 @@ $config['sys']['mail']['include_talk']     = true;                   // Вклю
 
 $config['module']['blog']['index_good']      =  5;   // Рейтинг топика выше которого(включительно) он попадает на главную
 
+$config['block']['tags']['tags_count'] = 50;                  // сколько тегов выводить в блоке "теги"
+$config['block']['tags']['personal_tags_count'] = 50;         // сколько тегов пользователя выводить в блоке "теги"
+$config['antispam']['mail'] = '@yahoo.com, @cjet.net, emailind.com$, @hotmail.com, @o2.pl, @mixbox.pl, @isonews2.com, @nonspam.eu, @highspeedmail.info, @pass12.com, @freemail.hu, @outlook.com';
+$config['sys']['cookie']['time'] = 60 * 60 * 24 * 365;        // время жизни куки когда пользователь остается залогиненым на сайте, 3 дня
+
+$config['router']['rewrite'] = array(
+    'registration' => 'iamhuman',
+);
 return $config;
 ?>
